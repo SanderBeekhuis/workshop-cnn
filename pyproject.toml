@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "workshop-cnn"
+version = "0.1.0"
+description = "A workshop on constructing a CCN from scratch"
+authors = ["Sander Beekhuis <16463246+SanderBeekhuis@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.11.*"  # ^3.11 will not let tensorflow install
+# Dep and pin needed since later versions don't have windows builds
+# Hence we cannot follow the automatic choice by Poetry/Tensorflow
+tensorflow-io-gcs-filesystem = "0.31.0" 
+tensorflow = "2.14"  # Needs to be followed with `poetry run pip install tensorflow` 
+numpy = "^1.26.2"
+ipykernel = "^6.28.0"  # Or the whole Jupyter package, but that is more and not needed to run notebooks inside vscode
+matplotlib = "^3.8.2"
+pandas = "^2.1.4"
+
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
