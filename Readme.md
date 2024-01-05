@@ -49,9 +49,23 @@ vgg - visual geometry group.  Made vggnet, esp. vvgnet16. Of which we can use th
 ## TODO
 - Better dataset?
 - Run model on a sample?
+  - Model op een afbeelding
 - Turn work into 1/2 practical excerices.
   - Guide with e.g. number of parameters. 
+- Model opslaan
 
 ## Te bespreken.  
 -  Training times to long? 
 -  What is a sound NN to start with?
+
+
+# Wim Peter
+## Split
+70/15/15
+Train, Validation, Test
+
+# Sneller
+- Maar een CNN laag
+- Minder Epochs
+- Kleinere dataset
+- eerder stoppen met trainen (c.f backof strategy, realtime graph)
