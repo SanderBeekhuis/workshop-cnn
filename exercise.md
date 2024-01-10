@@ -36,6 +36,8 @@ Als je klaar bent kun je aan de onderstaande bonus beginnen.
    a. Het kan zijn dat je `tensorflow.expand_dims` moet gebruiken om dimensies van een sample passend te krijgen als je met 
 1. Probeer bij elkaar te printen het plaatje wat je beoordeeld, het oordeel van je model en het daadwerkelijke antwoord.
 
+<div style="page-break-after: always;"></div>
+
 # Hints
 
 ## Dependencies
