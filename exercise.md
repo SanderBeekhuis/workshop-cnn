@@ -5,16 +5,18 @@ In deze opdracht gaan we een Neural Network model trainen op een dataset.  We zu
 daarna in opdracht 2 dit model nog verbeteren d.m.v. convolutions. 
 
 1. Download de dataset van https://www.kaggle.com/datasets/ryanholbrook/car-or-truck
-2. Laad de dataset in met `image_dataset_from_directory` <!-- TODO DISCUSS: Ook sample code geven? Hoe belangrijk zijn de stappen in deze sample code --> Denk er aan om een splitsing aan te houden tussen train/test/validation.   <!-- Of train/validation -->
+1. Laad de dataset in met `image_dataset_from_directory` <!-- TODO DISCUSS: Ook sample code geven? Hoe belangrijk zijn de stappen in deze sample code --> Denk er aan om een splitsing aan te houden tussen train/test/validation.   <!-- Of train/validation -->
+    <!-- Belangrijke argumenten noemen-->
 
-
-2. Defineer je model `model = keras.Sequential([...])`, in deze array moet je een aantal layers opnemen en eindigen met  `layers.Dense(1, activation='sigmoid')` om een ja/nee keuze te maken op het eind. 
-3. Compileer je model met <!-- TODO DISCUSSION Zo voorkauwen? Ligt aan gegeven theorie -->`model.compile(optimizer=tf.keras.optimizers.Adam(epsilon=0.01),
+1. Defineer je model `model = keras.Sequential([...])`, in deze array moet je een aantal layers opnemen en eindigen met  `layers.Dense(1, activation='sigmoid')` om een ja/nee keuze te maken op het eind. 
+  <!-- Flatten noemen -->
+1. Compileer je model met `model.compile(optimizer=tf.keras.optimizers.Adam(epsilon=0.01),
     loss='binary_crossentropy',
-    metrics=['binary_accuracy']
+    metrics=['binary_accuracy']  
+    <!-- F1 score als metric meenemen? -->
 )`
-4. Train je model met `model.fit`
-9. Probeer je model aan te passen zodat hij beter voorspeld
+1. Train je model met `model.fit`. Probeer je train time onder de 5 minuten te houden zodat je niet heel lang moet wachten. (Zie hints)
+2. Probeer je model aan te passen zodat hij beter voorspeld
     - E.g. meer lagen, meer nodes per laag, `DropOut` laag gebruiken. 
     - Een score van 60-65%  (`val_binary_accuracy`) zou haalbaar moeten zijn
 
@@ -25,11 +27,12 @@ Als je tijd over hebt kan je vast aan de bonus beginnen.
 1. Probeer nu om een beter model te maken door middel van convoluties.
 Gebruik hiervoor de volgende lagen: `layers.Conv2D` en `layers.MaxPool2D`
 
-1. Probeer het model nog op een aantal manieren te verbetern.  Een correctheis-score (`val_binary_accuracy`) van ruim 80% zou haalbaar moeten zijn.
+1. Probeer het model nog op een aantal manieren te verbetern.  Een correctheids-score (`val_binary_accuracy`) van ruim 80% zou haalbaar moeten zijn. 
+   <!-- Train time doel opnemen -->
 
 Als je klaar bent kun je aan de onderstaande bonus beginnen. 
 
-### Bonus: Opslaan, laden en model uitvoeren
+## Bonus: Opslaan, laden en model uitvoeren
 1. Als je tevreden bent kun je je model opslaan met `model.save`
 1. Laad je model weer in met `keras.models.load_model`
 1. Voer je model uit op een sample met `model(sample)`.  
@@ -38,7 +41,13 @@ Als je klaar bent kun je aan de onderstaande bonus beginnen.
 
 <div style="page-break-after: always;"></div>
 
+## Bonus "plotten van Grafieken". 
+<!-- TODO even kijken.  Ook in de nabespreking -->
+
 # Hints
+
+## Python & Jupyter 101
+<!-- Wim-Peter dekt dit af.  -->
 
 ## Dependencies
 Dependencies uit dit ecosysteem op windows instaleren kan tricky zijn.  De volgende set werkt begin januari 2024.  
