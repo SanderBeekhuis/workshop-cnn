@@ -19,29 +19,31 @@ on this network using convolutions.
 If you finish ahead of time you can start with the bonus exercise already. 
 
 
-## Opdracht 2: CNN
+## Exercise 2: CNN
 1. Try to make a beter model by using convolutions. Use the following layers `layers.Conv2D`, `layers.MaxPool2D`
 2. Try a few different things to improve the model. A score (`val_binary_accuracy`) of 70% should be doable with a training time of 10 minutes.  
 
 If you feel ready you can start on the bonus exercise below. 
 
-## Bonus: Save, Load and run you model
+## Bonus 1: Save, Load and run you model
 1. If your model is satisfactory you can save it with `model.save`
 2. You can load your model again with `keras.models.load_model`
 3. You can run your model on a sample using `model(sample)`.  
    a. It may be that you need to use `tensorflow.expand_dims` to make the  dimensions of your sample match your training data. Since we trained using batches. 
 4. Try to print the following next to each other:  The picture you are classifying, the verdict of your model and the correct classification. 
 
-## Bonus: Graphs of training performance.
+## Bonus 2: Graphs of training performance.
 1. Save the history of your training using:  `history = model.fit`
 2. Convert the history to a pandas dataframe using `  pd.DataFrame(history.history)` 
 3. Plot the loss and validation loss using  `history_frame.loc[:, ['loss', 'val_loss']].plot()` 
 4. Also plot the `accuracy` , `validation_accuracy`  and F1-scores. 
 5. Can you see in which epoch the model started "over-fitting"
 
+<div style="page-break-after: always;"></div>
+
 # Hints
 
-## Jupyter 101
+## Jupyter
 Jupyter is a framework to run snippets of python within a shared context of variables. 
 It also allows us to easily interweave code, output and plots. You don't need to use 
 Jupyter to do these exercises. But it is recommended. 
