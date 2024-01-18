@@ -1,5 +1,7 @@
 .venv
 dataset/train
-dataset/valid
+dataset/validation
+dataset old/train
+dataset old/valid
 models
 __pycache__

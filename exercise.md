@@ -1,58 +1,59 @@
-# Opdracht
+# Exercise
 
-## Opdracht 1: Neural Network
-In deze opdracht gaan we een Neural Network model trainen op een dataset.  We zullen 
-daarna in opdracht 2 dit model nog verbeteren d.m.v. convolutions. 
+## Exercise 1: Neural Network
+In this Exercise we will be training a Neural Network.  In Exercise two we will improve
+on this network using convolutions.
 
-1. Download de dataset van https://www.kaggle.com/datasets/ryanholbrook/car-or-truck
-1. Laad de dataset in met `image_dataset_from_directory` <!-- TODO DISCUSS: Ook sample code geven? Hoe belangrijk zijn de stappen in deze sample code --> Denk er aan om een splitsing aan te houden tussen train/test/validation.   <!-- Of train/validation -->
-    <!-- Belangrijke argumenten noemen-->
+1. Unzip the dataset in the repo.
+2. Load the dataset with `image_dataset_from_directory`.  We need to keep a train/test split.  There are some finicky bits in loading the data. Check the hints for some sample code. 
 
-1. Defineer je model `model = keras.Sequential([...])`, in deze array moet je een aantal layers opnemen en eindigen met  `layers.Dense(1, activation='sigmoid')` om een ja/nee keuze te maken op het eind. 
-  <!-- Flatten noemen -->
-1. Compileer je model met `model.compile(optimizer=tf.keras.optimizers.Adam(epsilon=0.01),
-    loss='binary_crossentropy',
-    metrics=['binary_accuracy']  
-    <!-- F1 score als metric meenemen? -->
-)`
-1. Train je model met `model.fit`. Probeer je train time onder de 5 minuten te houden zodat je niet heel lang moet wachten. (Zie hints)
-2. Probeer je model aan te passen zodat hij beter voorspeld
-    - E.g. meer lagen, meer nodes per laag, `DropOut` laag gebruiken. 
-    - Een score van 60-65%  (`val_binary_accuracy`) zou haalbaar moeten zijn
+3. Define your model  with `model = keras.Sequential([...])`, in this list you enumerate layers and finish it of with  `layers.Dense(1, activation='sigmoid')` to make a classification at the end. You will probably need to start with  `layers.Flatten(input_shape=[128, 128, 3]),` to turn every image into a single list. 
 
-Als je tijd over hebt kan je vast aan de bonus beginnen. 
+4. Compile your model with `model.compile(optimizer=tf.keras.optimizers.Adam(epsilon=0.01), loss='binary_crossentropy', metrics=['binary_accuracy',  tf.keras.metrics.F1Score()])`
+5. Train your model with `model.fit`. Try to keep your train time under 5 minutes so you 
+   won't need to wait too long. (See hints)
+6. Try to improve your model so that it predicts better. 
+    - E.g. more layers, more nodes per layer or maybe a `DropOut` layer. 
+    - A score of 60-65%  (`val_binary_accuracy`) should be doable.
+
+If you finish ahead of time you can start with the bonus exercise already. 
 
 
 ## Opdracht 2: CNN
-1. Probeer nu om een beter model te maken door middel van convoluties.
-Gebruik hiervoor de volgende lagen: `layers.Conv2D` en `layers.MaxPool2D`
+1. Try to make a beter model by using convolutions. Use the following layers `layers.Conv2D`, `layers.MaxPool2D`
+2. Try a few different things to improve the model. A score (`val_binary_accuracy`) of 70% should be doable with a training time of 10 minutes.  
 
-1. Probeer het model nog op een aantal manieren te verbetern.  Een correctheids-score (`val_binary_accuracy`) van ruim 80% zou haalbaar moeten zijn. 
-   <!-- Train time doel opnemen -->
+If you feel ready you can start on the bonus exercise below. 
 
-Als je klaar bent kun je aan de onderstaande bonus beginnen. 
+## Bonus: Save, Load and run you model
+1. If your model is satisfactory you can save it with `model.save`
+2. You can load your model again with `keras.models.load_model`
+3. You can run your model on a sample using `model(sample)`.  
+   a. It may be that you need to use `tensorflow.expand_dims` to make the  dimensions of your sample match your training data. Since we trained using batches. 
+4. Try to print the following next to each other:  The picture you are classifying, the verdict of your model and the correct classification. 
 
-## Bonus: Opslaan, laden en model uitvoeren
-1. Als je tevreden bent kun je je model opslaan met `model.save`
-1. Laad je model weer in met `keras.models.load_model`
-1. Voer je model uit op een sample met `model(sample)`.  
-   a. Het kan zijn dat je `tensorflow.expand_dims` moet gebruiken om dimensies van een sample passend te krijgen als je met 
-1. Probeer bij elkaar te printen het plaatje wat je beoordeeld, het oordeel van je model en het daadwerkelijke antwoord.
-
-<div style="page-break-after: always;"></div>
-
-## Bonus "plotten van Grafieken". 
-<!-- TODO even kijken.  Ook in de nabespreking -->
+## Bonus: Graphs of training performance.
+1. Save the history of your training using:  `history = model.fit`
+2. Convert the history to a pandas dataframe using `  pd.DataFrame(history.history)` 
+3. Plot the loss and validation loss using  `history_frame.loc[:, ['loss', 'val_loss']].plot()` 
+4. Also plot the `accuracy` , `validation_accuracy`  and F1-scores. 
+5. Can you see in which epoch the model started "over-fitting"
 
 # Hints
 
-## Python & Jupyter 101
-<!-- Wim-Peter dekt dit af.  -->
+## Jupyter 101
+Jupyter is a framework to run snippets of python within a shared context of variables. 
+It also allows us to easily interweave code, output and plots. You don't need to use 
+Jupyter to do these exercises. But it is recommended. 
+
+![example](./notebook_inline.png)
+
+You can run a Jupyter notebook from inside vscode or in your browser. If you have/know vscode I would recommend the former. 
 
 ## Dependencies
-Dependencies uit dit ecosysteem op windows instaleren kan tricky zijn.  De volgende set werkt begin januari 2024.  
+Installing dependencies on windows can be tricky. The following set works begin January 2024.  
 
-```
+```toml
 python = "3.11.*"  # ^3.11 will not let tensorflow install;
 
 # TENSORFLOW en KERAS
@@ -70,9 +71,11 @@ pandas = "^2.1.4"
 numpy = "^1.26.2"
 ``` 
 
-## Eerste cel van je notebook
-Je kunt je notebook beginnen met de volgende cel zodat je wat defaults, handige setting en imports gemeenschappelijk hevt met de rest van de groep.
-```
+## First cel of your notebook
+You can start your notebook with the following cel so that you share the same defaults, usefull setiing and imports
+with the rest of the group. 
+
+```python
 # Imports
 import os
 import matplotlib.pyplot as plt
@@ -86,7 +89,8 @@ def set_seed(seed=31415):
     tf.random.set_seed(seed)
     os.environ['PYTHONHASHSEED'] = str(seed)
     os.environ['TF_DETERMINISTIC_OPS'] = '1'
-set_seed()
+    return seed
+seed = set_seed()
 
 # Set Matplotlib defaults
 plt.rc('figure', autolayout=True)
@@ -95,10 +99,50 @@ plt.rc('axes', labelweight='bold', labelsize='large',
 plt.rc('image', cmap='magma')
 ```
 
-## Model training time
-Als je vind dat je model te lang moet trainen kun je een aantal dingen doen:
-- Training set verkleinen
-- Aantal parameters in het model verkleinen. (Gebruik `model.summary()` om te kijken waar de meeste zitten.)
-- Aantal Epochs verminderen. Vooral als je lang doortraint, zonder dat het model beter wordt.
-  - Extra mooi is het gebruik van: https://keras.io/api/callbacks/early_stopping/
+## Loading data
+Loading data the right way can be finicky and it is not always clear when you did it 
+wrong.  To help everybody get underway we share the following snippet
 
+```python
+def convert_to_float(image, label):
+    image = tf.image.convert_image_dtype(image, dtype=tf.float32)
+    return image, label
+
+
+def load_data(seed):
+    ds_train, ds_test = image_dataset_from_directory(
+        './dataset/train/train',
+        labels='inferred',
+        label_mode='binary',
+        image_size=[128, 128],
+        interpolation='nearest',
+        batch_size=64,
+        shuffle=True,
+        validation_split=0.2,
+        subset="both",
+        seed=seed
+    )
+
+    ds_train = (
+        ds_train
+        .map(convert_to_float)
+        .cache()
+        .prefetch(buffer_size=tf.data.experimental.AUTOTUNE)
+    )
+
+    ds_test = (
+        ds_test
+        .map(convert_to_float)
+        .cache()
+        .prefetch(buffer_size=tf.data.experimental.AUTOTUNE)
+    )
+
+    return ds_train, ds_test
+``` 
+
+## Model training time
+If your model is taking too long to train, there are a few things you can do:
+- Investigate and reduce the number of trainable parameters in the model. (Use `model.summary()` to see where they are.)
+- Reduce number of epochs. Especially if you train for a long time, without the model improving.
+  - Even better is the use of: https://keras.io/api/callbacks/early_stopping/
+- Reduce the size of the training set

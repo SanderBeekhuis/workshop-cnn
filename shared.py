@@ -6,14 +6,46 @@ def convert_to_float(image, label):
     image = tf.image.convert_image_dtype(image, dtype=tf.float32)
     return image, label
 
-def load_data(batched=True):
+
+def load_data(seed):
+    ds_train, ds_test = image_dataset_from_directory(
+        './dataset/train/train',
+        labels='inferred',
+        label_mode='binary',
+        image_size=[128, 128],
+        interpolation='nearest',
+        batch_size=64,
+        shuffle=True,
+        validation_split=0.2,
+        subset="both",
+        seed=seed
+    )
+
+    ds_train = (
+        ds_train
+        .map(convert_to_float)
+        .cache()
+        .prefetch(buffer_size=tf.data.experimental.AUTOTUNE)
+    )
+
+    ds_test = (
+        ds_test
+        .map(convert_to_float)
+        .cache()
+        .prefetch(buffer_size=tf.data.experimental.AUTOTUNE)
+    )
+
+    return ds_train, ds_test
+
+
+def load_old_data(batched=True):
     if batched: 
         batch_size = 64
     else:
         batch_size = None
 
     ds_train_ = image_dataset_from_directory(
-        './dataset/train',
+        './dataset old/train',
         labels='inferred',
         label_mode='binary',
         image_size=[128, 128],
@@ -22,7 +54,7 @@ def load_data(batched=True):
         shuffle=True,
     )
     ds_valid_ = image_dataset_from_directory(
-        './dataset/valid',
+        './dataset old/valid',
         labels='inferred',
         label_mode='binary',
         image_size=[128, 128],
@@ -55,7 +87,7 @@ def compile_and_fit(model, epochs=50):
         metrics=['binary_accuracy']
     )
 
-    ds_train, ds_valid = load_data()
+    ds_train, ds_valid = load_old_data()
 
     history = model.fit(
         ds_train,
