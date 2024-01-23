@@ -55,12 +55,13 @@ You can run a Jupyter notebook from inside vscode or in your browser. If you hav
 ## Dependencies
 Installing dependencies on windows can be tricky, the following instructions work with python3.11
 
-1. Run `poetry instal` to create a virtual env with most dependencies installed.
-2. Activate the virtual env in your command line with `poetry shell`
-3. Run `pip install tensorflow` to also install tensorflow.
-4. Test your environment using. `python .\test_env.py`, the output should end with "All set"
-5. Start Juptyterlab using: `jupyter-lab` or open vscode then, in either, open `exercise1.ipynb` and try to run it. 
-6. If this succeeds you are ready for the exercises.
+1. Clone/Fork this repo. 
+2. Run `poetry instal` to create a virtual env with most dependencies installed.
+3. Activate the virtual env in your command line with `poetry shell`
+4. Run `pip install tensorflow` to also install tensorflow.
+5. Test your environment using. `python .\test_env.py`, the output should end with "All set"
+6. Start Juptyterlab using: `jupyter-lab` or open vscode then, in either, open `exercise1.ipynb` and try to run it. 
+7. If this succeeds you are ready for the exercises.
 
 ## First cel of your notebook
 You can start your notebook with the following cel so that you share the same defaults, useful settings and imports
