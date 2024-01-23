@@ -53,28 +53,17 @@ Jupyter to do these exercises. But it is recommended.
 You can run a Jupyter notebook from inside vscode or in your browser. If you have/know vscode I would recommend the former. 
 
 ## Dependencies
-Installing dependencies on windows can be tricky. The following set works begin January 2024.  
+Installing dependencies on windows can be tricky, the following instructions work with python3.11
 
-```toml
-python = "3.11.*"  # ^3.11 will not let tensorflow install;
-
-# TENSORFLOW en KERAS
-# Dep and pin needed since later versions don't have windows builds
-# Hence we cannot follow the automatic choice by Poetry/Tensorflow
-tensorflow-io-gcs-filesystem = "0.31.0" 
-tensorflow = "2.14"  # Needs to be followed with `poetry run pip install tensorflow` 
-
-# JUPYTER NOTEBOOKS IN VSCODE
-ipykernel = "^6.28.0"  # Or the whole Jupyter package, but that is more and not needed to run notebooks inside vscode
-
-# STANDARD DATA SCIENCE LIBRARIES
-matplotlib = "^3.8.2"
-pandas = "^2.1.4"
-numpy = "^1.26.2"
-``` 
+1. Run `poetry instal` to create a virtual env with most dependencies installed.
+2. Activate the virtual env in your command line with `poetry shell`
+3. Run `pip install tensorflow` to also install tensorflow.
+4. Test your environment using. `python .\test_env.py`, the output should end with "All set"
+5. Start Juptyterlab using: `jupyter-lab` or open vscode then, in either, open `exercise1.ipynb` and try to run it. 
+6. If this succeeds you are ready for the exercises.
 
 ## First cel of your notebook
-You can start your notebook with the following cel so that you share the same defaults, usefull setiing and imports
+You can start your notebook with the following cel so that you share the same defaults, useful settings and imports
 with the rest of the group. 
 
 ```python
