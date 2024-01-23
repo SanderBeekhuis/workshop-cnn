@@ -5,3 +5,4 @@ dataset old/train
 dataset old/valid
 models
 __pycache__
+.ipynb_checkpoints
