@@ -96,6 +96,8 @@ Loading data the right way can be finicky and it is not always clear when you di
 wrong.  To help everybody get underway we share the following snippet
 
 ```python
+from tensorflow.keras.preprocessing import image_dataset_from_directory
+
 def convert_to_float(image, label):
     image = tf.image.convert_image_dtype(image, dtype=tf.float32)
     return image, label
